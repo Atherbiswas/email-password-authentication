@@ -10,8 +10,10 @@ const auth = getAuth(app);
 
 function ReactBootstrap() {
     const [passwordError, setPasswordError] = useState('');
+    const [createSuccess, setCreateSuccess] = useState(false);
     const handleClickRegister =(event)=>{
         event.preventDefault();
+        setCreateSuccess(false)
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
@@ -34,9 +36,12 @@ function ReactBootstrap() {
         .then(result => {
             const user = result.user;
             console.log(user);
+            setCreateSuccess(true);
+            form.reset();
         })
         .catch(error => {
-            console.error('error', error)
+            console.error('error', error);
+            setPasswordError(error.message);
         })
 
     }
@@ -53,6 +58,7 @@ function ReactBootstrap() {
                 <Form.Control type="password" name="password" placeholder="Enter your Password" required/>
             </Form.Group>
             <p className='text-danger'>{passwordError}</p>
+            {createSuccess && <p className='text-success'>Created Succesfully</p>}
              <Button variant="primary" type="submit">Register</Button>
         </Form>
     </div>

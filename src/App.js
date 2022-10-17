@@ -17,8 +17,6 @@ function App() {
     <div>
 
       <ReactBootstrap></ReactBootstrap>
-
-
       {/* <form onSubmit={handleRegister}>
         <input type="email" name="email" id="" placeholder="Enter your email" />
         <br />
